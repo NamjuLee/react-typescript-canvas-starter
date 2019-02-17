@@ -17,14 +17,12 @@ export class Canvas {
         }
         const ctx = this.canvas.getContext('2d');
         if (ctx !== null) { this.ctx = ctx; }
+        this.app.Init(this.ctx);
         this.Loop();
     }
     Loop() {
         requestAnimationFrame(() => { this.Loop(); });
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-        this.Render(this.ctx);
-    }
-    Render(ctx: CanvasRenderingContext2D) {
-        this.app.renderer.Render(ctx);
+        this.app.Loop(this.ctx);
     }
 }
